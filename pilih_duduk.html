@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="assets/css/pilihduduk.css">
+    <title>Rajendra Tours</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar Section -->
+        <div class="navbar">
+            <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+            <div class="menu">
+                <a href="index.html">Beranda</a>
+                <a href="jadwal.html">Jadwal</a>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="seat-container">
+            <h2>Pilih Posisi Duduk</h2>
+            <div class="seat-grid">
+                <div class="seat" data-seat="1">1</div>
+                <div class="seat driver">🚍</div>
+                <div class="seat" data-seat="3">3</div>
+                <div class="seat" data-seat="2">2</div>
+                <div class="seat unavailable" data-seat="X1">X</div>
+                <div class="seat" data-seat="5">5</div>
+                <div class="seat" data-seat="4">4</div>
+                <div class="seat unavailable" data-seat="X2">X</div>
+            </div>
+            <div class="summary">
+                <p>Kursi Dipilih: <span id="selectedSeats">-</span></p>
+                <p>Total Harga: Rp.<span id="totalPrice">0</span></p>
+                <button id="confirmButton" class="confirm-button" disabled>Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

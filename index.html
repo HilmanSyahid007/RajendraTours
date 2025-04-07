@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Rajendra Tours</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <div class="menu">
+                <a href="index.html">Beranda</a>
+                <a href="jadwal.html">Jadwal</a>
+            </div>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>Pemesanan Shuttle</h1>
+        <div class="carousel">
+            <img src="assets/img/2882_DSC09376.JPG" class="active" alt="Promo 1">
+            <img src="assets/img/Rajendra2017-2.jpg" alt="Promo 2">
+            <img src="assets/img/hiace.jpg" alt="Promo 3">
+        </div>
+        <div class="form-group">
+            <label for="berangkat">Berangkat Dari</label>
+            <select id="berangkat">
+                <option selected>Pilih Lokasi Keberangkatan</option>
+                <option value="1">Duri</option>
+                <option value="2">Tembilahan</option>
+                <option value="3">Pekanbaru</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tujuan">Tujuan Ke</label>
+            <select id="tujuan">
+                <option selected>Pilih Lokasi Tujuan</option>
+                <option value="1">Duri</option>
+                <option value="2">Tembilahan</option>
+                <option value="3">Pekanbaru</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tanggal">Tanggal Keberangkatan</label>
+            <input type="date" id="tanggal">
+        </div>
+        <a href="jadwal.html"><button>Cari Jadwal</button></a>
+    </div>
+    <!-- Script Javascript -->
+     <script src="assets/js/script.js"></script>
+</body>
+</html>
