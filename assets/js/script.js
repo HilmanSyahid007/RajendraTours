@@ -5,6 +5,8 @@ function toggleMenu() {
     } else {
         menu.style.display = "flex";
     }
+
+    menu.classList.toggle("active");
 }
 
 let index = 0;
@@ -37,33 +39,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const seats = document.querySelectorAll(".seat");
-    const selectedSeatsDisplay = document.getElementById("selectedSeats");
-    const totalPriceDisplay = document.getElementById("totalPrice");
-    const confirmButton = document.getElementById("confirmButton");
-    const seatPrice = 100000; // Harga per kursi dalam rupiah
+    // Fungsi OTP untuk login
+    let otpCode = "";
+    let userPhone = "";
 
-    function updateSummary() {
-        const selectedSeats = document.querySelectorAll(".seat.selected");
-        const seatNumbers = Array.from(selectedSeats).map(seat => seat.dataset.seat);
-        selectedSeatsDisplay.textContent = seatNumbers.length > 0 ? seatNumbers.join(", ") : "-";
-        totalPriceDisplay.textContent = seatNumbers.length * seatPrice;
-        confirmButton.disabled = seatNumbers.length === 0;
+    function kirimOTP() {
+      const phone = document.getElementById("phoneInput").value.trim();
+      if (phone === "") {
+        alert("Harap masukkan nomor WhatsApp");
+        return;
+      }
+
+      otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+      alert("Kode OTP dikirim ke " + phone + " (Simulasi: " + otpCode + ")");
+      userPhone = phone;
+      document.getElementById("otpSection").classList.remove("hidden");
     }
 
-    seats.forEach(seat => {
-        if (!seat.classList.contains("unavailable") && !seat.classList.contains("driver")) {
-            seat.addEventListener("click", function () {
-                seat.classList.toggle("selected");
-                updateSummary();
-            });
-        }
-    });
-
-    confirmButton.addEventListener("click", function () {
-        const selectedSeats = document.querySelectorAll(".seat.selected");
-        const seatNumbers = Array.from(selectedSeats).map(seat => seat.dataset.seat);
-        alert("Kursi berhasil dikonfirmasi: " + seatNumbers.join(", ") + "\nTotal Harga: Rp." + seatNumbers.length * seatPrice);
-    });
-});
+    function verifikasiOTP() {
+      const inputCode = document.getElementById("otpInput").value.trim();
+      if (inputCode === otpCode) {
+        localStorage.setItem("loggedInUser", userPhone);
+        alert("Berhasil login!");
+        window.location.href = "profile.html"; // redirect setelah login sukses
+      } else {
+        alert("Kode OTP salah!");
+      }
+    }

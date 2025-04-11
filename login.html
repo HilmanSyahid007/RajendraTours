@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Pengguna</title>
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="navbar">
+        <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="menu">
+            <a href="index.html">Beranda</a>
+            <a href="jadwal.html">Jadwal</a>
+            <a href="profile.html">Profile</a>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+  <div class="section">
+    <h2 style="text-align: center;">Masuk Akun</h2>
+    <div class="login-form">
+      <input type="tel" id="phoneInput" placeholder="Masukkan No. WhatsApp">
+      <button onclick="kirimOTP()">Kirim OTP</button>
+
+      <div id="otpSection" class="hidden">
+        <input type="text" id="otpInput" placeholder="Masukkan Kode OTP">
+        <button onclick="verifikasiOTP()">Verifikasi</button>
+      </div>
+    </div>
+  </div>
+
+    <div class="back-link">
+      <a href="profile.html">← Kembali ke Profil</a>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+
+</body>
+</html>

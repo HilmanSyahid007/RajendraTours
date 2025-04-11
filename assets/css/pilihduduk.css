@@ -38,12 +38,44 @@ body {
     color: blue;
 }
 
+.navbar .menu.active {
+    display: flex;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+}
+@media (min-width: 600px) {
+    .navbar {
+        justify-content: flex-start;
+    }
+    .navbar .menu {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    .menu-toggle {
+        display: none;
+    }
+}
+
 .seat-container {
     text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .seat-grid {
     display: grid;
@@ -80,4 +112,38 @@ body {
 .summary {
     margin-top: 20px;
     text-align: center;
+}
+
+/* === Tambahan untuk Bottom Navbar === */
+.bottom-navbar {
+    height: 110px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.bottom-navbar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom-navbar a span {
+    font-size: 20px;
+}
+
+.bottom-navbar a:hover {
+    color: #007bff;
+}
+
+/* Active Link (opsional) */
+.bottom-navbar a.active {
+    color: #007bff;
+    font-weight: bold;
 }
