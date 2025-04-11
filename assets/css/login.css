@@ -108,3 +108,37 @@ body {
     text-decoration: none;
     color: #31b6fd;
   }
+
+  /* === Tambahan untuk Bottom Navbar === */
+.bottom-navbar {
+  height: 110px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+.bottom-navbar a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottom-navbar a span {
+  font-size: 20px;
+}
+
+.bottom-navbar a:hover {
+  color: #007bff;
+}
+
+/* Active Link (opsional) */
+.bottom-navbar a.active {
+  color: #007bff;
+  font-weight: bold;
+}
