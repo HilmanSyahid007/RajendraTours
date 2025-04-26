@@ -12,49 +12,57 @@
         <div class="navbar">
             <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
         </div>
-    <div class="content-container">
-        <h1>Pemesanan Shuttle</h1>
-        <div class="carousel">
-            <img src="assets/img/2882_DSC09376.JPG" class="active" alt="Promo 1">
-            <img src="assets/img/Rajendra2017-2.jpg" alt="Promo 2">
-            <img src="assets/img/hiace.jpg" alt="Promo 3">
-        </div>
-        <div class="form-group">
-            <label for="berangkat">Berangkat Dari</label>
-            <select id="berangkat">
-                <option selected>Pilih Lokasi Keberangkatan</option>
-                <option value="1">Duri</option>
-                <option value="2">Tembilahan</option>
-                <option value="3">Pekanbaru</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="tujuan">Tujuan Ke</label>
-            <select id="tujuan">
-                <option selected>Pilih Lokasi Tujuan</option>
-                <option value="1">Duri</option>
-                <option value="2">Tembilahan</option>
-                <option value="3">Pekanbaru</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="tanggal">Tanggal Keberangkatan</label>
-            <input type="date" id="tanggal">
-        </div>
-        <a href="jadwal.html"><button>Cari Jadwal</button></a>
-        <div class="bottom-navbar">
-            <a href="index.html">
-              <span>🏠</span>
-              <p>Beranda</p>
-            </a>
-            <a href="jadwal.html">
-              <span>🕒</span>
-              <p>Jadwal</p>
-            </a>
-            <a href="profile.html">
-              <span>👤</span>
-              <p>Profil</p>
-            </a>
+
+        <div class="content-container">
+            <h1>Pemesanan Shuttle</h1>
+
+            <div class="carousel">
+                <img src="assets/img/2882_DSC09376.JPG" class="active" alt="Promo 1">
+                <img src="assets/img/Rajendra2017-2.jpg" alt="Promo 2">
+                <img src="assets/img/hiace.jpg" alt="Promo 3">
+            </div>
+
+            <div class="form-group">
+                <label for="berangkat">Berangkat Dari</label>
+                <select id="berangkat">
+                    <option selected disabled>Pilih Lokasi Keberangkatan</option>
+                    <option value="Duri">Duri</option>
+                    <option value="Tembilahan">Tembilahan</option>
+                    <option value="Pekanbaru">Pekanbaru</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tujuan">Tujuan Ke</label>
+                <select id="tujuan">
+                    <option selected disabled>Pilih Lokasi Tujuan</option>
+                    <option value="Duri">Duri</option>
+                    <option value="Tembilahan">Tembilahan</option>
+                    <option value="Pekanbaru">Pekanbaru</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tanggal">Tanggal Keberangkatan</label>
+                <input type="date" id="tanggal">
+            </div>
+
+            <button onclick="cariJadwal()">Cari Jadwal</button>
+
+            <div class="bottom-navbar">
+                <a href="index.html">
+                    <span>🏠</span>
+                    <p>Beranda</p>
+                </a>
+                <a href="jadwal.html">
+                    <span>🕒</span>
+                    <p>Jadwal</p>
+                </a>
+                <a href="profile.html">
+                    <span>👤</span>
+                    <p>Profil</p>
+                </a>
+            </div>
         </div>
     </div>
     <!-- Script Javascript -->
