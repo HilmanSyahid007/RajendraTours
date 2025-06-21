@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/form_pemesanan.css">
+  <title>Form Pemesanan - Rajendra Tours</title>
+</head>
+<body>
+  <div class="container">
+    <div class="navbar">
+      <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+    </div>
+
+    <div class="content-container">
+      <h1>Form Pemesanan</h1>
+      <form id="pemesananForm">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" id="nama" required>
+        </div>
+        <div class="form-group">
+          <label>No. Telepon</label>
+          <input type="text" id="telepon" required>
+        </div>
+        <div class="form-group">
+          <label>Jumlah Penumpang</label>
+          <input type="number" id="penumpang" min="1" required>
+        </div>
+        <div class="form-group">
+          <label>Metode Pembayaran</label>
+          <select id="pembayaran" required>
+            <option value="">Pilih Metode</option>
+            <option value="Cash">Cash</option>
+            <option value="Transfer">Transfer</option>
+            <option value="QRIS">QRIS</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kursi Dipilih</label>
+          <input type="text" id="kursiDipilih" readonly>
+        </div>
+        <div class="form-group">
+          <label>Total Harga</label>
+          <input type="text" id="totalHarga" readonly>
+        </div>
+        <button type="submit">Kirim Pemesanan</button>
+      </form>
+
+      <div class="bottom-navbar">
+        <a href="index.html">
+          <span>🏠</span>
+          <p>Beranda</p>
+        </a>
+        <a href="jadwal.html">
+          <span>🕒</span>
+          <p>Jadwal</p>
+        </a>
+        <a href="profile.html">
+          <span>👤</span>
+          <p>Profil</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const kursi = sessionStorage.getItem("kursi") || "-";
+      const total = sessionStorage.getItem("total") || "0";
+      document.getElementById("kursiDipilih").value = kursi;
+      document.getElementById("totalHarga").value = "Rp. " + total;
+
+      document.getElementById("pemesananForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        alert("Pemesanan berhasil dikirim! (Simulasi)");
+        sessionStorage.clear();
+        window.location.href = "index.html";
+      });
+    });
+
+    (function(){
+      emailjs.init("3mcikNQhO3c-xBkTI"); // Ganti dengan userID dari EmailJS
+      emailjs.sendForm('service_ie617wa', 'template_y3n988n', this)
+    })();
+  </script>
+</body>
+</html>

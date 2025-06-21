@@ -30,7 +30,7 @@
             <div class="summary">
                 <p>Kursi Dipilih: <span id="selectedSeats">-</span></p>
                 <p>Total Harga: Rp.<span id="totalPrice">0</span></p>
-                <button id="confirmButton" class="confirm-button" disabled>Konfirmasi</button>
+                <button id="confirmButton" class="confirm-button">Konfirmasi</button>
             </div>
             <div class="bottom-navbar">
                 <a href="index.html">
@@ -48,8 +48,45 @@
             </div>
         </div>
     </div>
-    </div>
 
-    <script src="assets/js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const seatButtons = document.querySelectorAll(".seat");
+        const selectedSeatsSpan = document.getElementById("selectedSeats");
+        const totalPriceSpan = document.getElementById("totalPrice");
+        const confirmButton = document.getElementById("confirmButton");
+        const pricePerSeat = 100000;
+        let selectedSeats = [];
+
+        seatButtons.forEach(seat => {
+          if (!seat.classList.contains("driver") && !seat.classList.contains("unavailable")) {
+            seat.addEventListener("click", function () {
+              const seatNumber = this.dataset.seat;
+              this.classList.toggle("selected");
+
+              if (selectedSeats.includes(seatNumber)) {
+                selectedSeats = selectedSeats.filter(s => s !== seatNumber);
+              } else {
+                selectedSeats.push(seatNumber);
+              }
+
+              selectedSeatsSpan.textContent = selectedSeats.length ? selectedSeats.join(", ") : "-";
+              totalPriceSpan.textContent = selectedSeats.length * pricePerSeat;
+            });
+          }
+        });
+
+        confirmButton.addEventListener("click", function () {
+          if (selectedSeats.length === 0) {
+            alert("Silakan pilih kursi terlebih dahulu!");
+            return;
+          }
+
+          sessionStorage.setItem("kursi", selectedSeats.join(", "));
+          sessionStorage.setItem("total", selectedSeats.length * pricePerSeat);
+          window.location.href = "form_pemesanan.html";
+        });
+      });
+    </script>
 </body>
 </html>

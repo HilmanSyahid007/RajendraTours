@@ -95,10 +95,12 @@ body {
     cursor: pointer;
     font-size: 18px;
     background-color: white;
+    transition: 0.2s ease;
 }
 .seat.selected {
     background-color: #007bff;
     color: white;
+    font-weight: bold;
 }
 .seat.unavailable {
     background-color: #ccc;
