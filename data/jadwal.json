@@ -1,0 +1,115 @@
+{
+  "Pekanbaru-Jambi": {
+    "tanggal": ["2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04"],
+    "data": [
+      {
+        "tanggal": "2025-06-30",
+        "jam": "09:00 - 20:00",
+        "harga": "Rp. 330.000 / orang",
+        "fasilitas": "🏨 🍔 📦 🖥️"
+      },
+      {
+        "tanggal": "2025-07-01",
+        "jam": "17:00 - 04:00",
+        "harga": "Rp. 350.000 / orang",
+        "fasilitas": "🚗 🍽️ 🎥 🎮"
+      },
+      {
+        "tanggal": "2025-07-02",
+        "jam": "10:00 - 21:00",
+        "harga": "Rp. 340.000 / orang",
+        "fasilitas": "🛏️ 🍱 🎧 🎮"
+      },
+      {
+        "tanggal": "2025-07-03",
+        "jam": "13:00 - 23:00",
+        "harga": "Rp. 360.000 / orang",
+        "fasilitas": "🚌 🍜 📺"
+      },
+      {
+        "tanggal": "2025-07-04",
+        "jam": "-",
+        "harga": "Jadwal belum tersedia",
+        "fasilitas": "❓ ❓ ❓"
+      }
+    ]
+  },
+
+  "Duri-Pekanbaru": {
+    "tanggal": ["2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03"],
+    "data": [
+      {
+        "tanggal": "2025-06-30",
+        "jam": "07:00 - 10:00",
+        "harga": "Rp. 150.000 / orang",
+        "fasilitas": "🚗 🍔 🎶"
+      },
+      {
+        "tanggal": "2025-07-01",
+        "jam": "09:00 - 12:00",
+        "harga": "Rp. 160.000 / orang",
+        "fasilitas": "🚘 ☕ 🎧"
+      },
+      {
+        "tanggal": "2025-07-02",
+        "jam": "10:00 - 13:00",
+        "harga": "Rp. 165.000 / orang",
+        "fasilitas": "🚐 🍩 🎼"
+      },
+      {
+        "tanggal": "2025-07-03",
+        "jam": "-",
+        "harga": "Jadwal belum tersedia",
+        "fasilitas": "❓ ❓ ❓"
+      }
+    ]
+  },
+
+  "Tembilahan-Pekanbaru": {
+    "tanggal": ["2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04"],
+    "data": [
+      {
+        "tanggal": "2025-07-01",
+        "jam": "06:00 - 11:00",
+        "harga": "Rp. 200.000 / orang",
+        "fasilitas": "🛌 🍛 📺"
+      },
+      {
+        "tanggal": "2025-07-02",
+        "jam": "07:00 - 12:00",
+        "harga": "Rp. 210.000 / orang",
+        "fasilitas": "🚌 🥪 📻"
+      },
+      {
+        "tanggal": "2025-07-03",
+        "jam": "08:00 - 13:00",
+        "harga": "Rp. 220.000 / orang",
+        "fasilitas": "🚐 ☕ 🎶"
+      },
+      {
+        "tanggal": "2025-07-04",
+        "jam": "-",
+        "harga": "Jadwal belum tersedia",
+        "fasilitas": "❓ ❓ ❓"
+      }
+    ]
+  },
+
+  "Dumai-Pekanbaru": {
+    "tanggal": ["2025-07-01", "2025-07-02"],
+    "data": [
+      {
+        "tanggal": "2025-07-01",
+        "jam": "08:00 - 11:00",
+        "harga": "Rp. 180.000 / orang",
+        "fasilitas": "🚕 🍩 🎵"
+      },
+      {
+        "tanggal": "2025-07-02",
+        "jam": "-",
+        "harga": "Jadwal belum tersedia",
+        "fasilitas": "❓ ❓ ❓"
+      }
+    ]
+  }
+}

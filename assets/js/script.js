@@ -12,6 +12,8 @@ function toggleMenu() {
 let index = 0;
 function showSlides() {
     let slides = document.querySelectorAll(".carousel img");
+    if (slides.length === 0) return;
+
     slides.forEach(slide => slide.classList.remove("active"));
     index = (index + 1) % slides.length;
     slides[index].classList.add("active");
@@ -19,173 +21,212 @@ function showSlides() {
 setInterval(showSlides, 3000);
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Fitur tab tanggal
+    const inputTanggal = document.getElementById("tanggal");
+    if (inputTanggal && !inputTanggal.value) {
+        const today = new Date().toISOString().split('T')[0];
+        inputTanggal.value = today;
+    }
+
     const tabs = document.querySelectorAll(".tab");
     tabs.forEach(tab => {
         tab.addEventListener("click", function () {
             tabs.forEach(t => t.classList.remove("active"));
             this.classList.add("active");
-            // Simulasi filter berdasarkan tanggal (bisa disesuaikan dengan backend)
             console.log("Memfilter jadwal untuk:", this.innerText);
         });
     });
 
-    // Efek klik tombol pemesanan
     const buttons = document.querySelectorAll(".btn");
     buttons.forEach(button => {
         button.addEventListener("click", function () {
-            alert("Anda memilih jadwal: " + this.closest(".schedule-card").querySelector(".schedule-header").innerText);
+            const header = this.closest(".schedule-card").querySelector(".schedule-header").innerText;
+            const time = this.closest(".schedule-card").querySelector(".schedule-time").innerText;
+            if (time === "-") {
+                alert("Jadwal belum tersedia. Silakan hubungi Customer Service.");
+            } else {
+                alert("Anda memilih jadwal: " + header);
+            }
         });
     });
 });
 
-    // Fungsi OTP untuk login
-    let otpCode = "";
-    let userPhone = "";
+let otpCode = "";
+let userPhone = "";
 
-    function kirimOTP() {
-      const phone = document.getElementById("phoneInput").value.trim();
-      if (phone === "") {
+function kirimOTP() {
+    const phone = document.getElementById("phoneInput").value.trim();
+    if (phone === "") {
         alert("Harap masukkan nomor WhatsApp");
         return;
-      }
-
-      otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-      alert("Kode OTP dikirim ke " + phone + " (Simulasi: " + otpCode + ")");
-      userPhone = phone;
-      document.getElementById("otpSection").classList.remove("hidden");
     }
 
-    function verifikasiOTP() {
-      const inputCode = document.getElementById("otpInput").value.trim();
-      if (inputCode === otpCode) {
+    otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+    alert("Kode OTP dikirim ke " + phone + " (Simulasi: " + otpCode + ")");
+    userPhone = phone;
+    document.getElementById("otpSection").classList.remove("hidden");
+}
+
+function verifikasiOTP() {
+    const inputCode = document.getElementById("otpInput").value.trim();
+    if (inputCode === otpCode) {
         localStorage.setItem("loggedInUser", userPhone);
         alert("Berhasil login!");
-        window.location.href = "profile.html"; // redirect setelah login sukses
-      } else {
+        window.location.href = "profile.html";
+    } else {
         alert("Kode OTP salah!");
-      }
+    }
+}
+
+function cariJadwal() {
+    const berangkat = document.getElementById("berangkat").value;
+    const tujuan = document.getElementById("tujuan").value;
+    let tanggal = document.getElementById("tanggal").value;
+
+    if (!berangkat || !tujuan) {
+        alert("Harap lengkapi data keberangkatan dan tujuan terlebih dahulu!");
+        return;
     }
 
+    // Jika user tidak isi tanggal, pakai tanggal hari ini
+    if (!tanggal) {
+        const today = new Date();
+        tanggal = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
+    }
 
-    // Fungsi Pilih Rute + Cari Jadwal
-    function cariJadwal() {
-      const berangkat = document.getElementById('berangkat').value;
-      const tujuan = document.getElementById('tujuan').value;
-      const tanggal = document.getElementById('tanggal').value;
+    sessionStorage.setItem('berangkat', berangkat);
+    sessionStorage.setItem('tujuan', tujuan);
+    sessionStorage.setItem('tanggal', tanggal);
 
-      if (!berangkat || !tujuan || !tanggal) {
-          alert("Harap lengkapi semua pilihan terlebih dahulu!");
-          return;
-      }
+    window.location.href = "jadwal.html";
+}
 
-      // Simpan ke sessionStorage
-      sessionStorage.setItem('berangkat', berangkat);
-      sessionStorage.setItem('tujuan', tujuan);
-      sessionStorage.setItem('tanggal', tanggal);
 
-      // Pindah ke halaman jadwal
-      window.location.href = "jadwal.html";
-  }
+const berangkat = sessionStorage.getItem('berangkat');
+const tujuan = sessionStorage.getItem('tujuan');
+let tanggalDipilih = sessionStorage.getItem('tanggal');
 
-    // Fungsi Pilih Rute + Cari Jadwal Pada Halaman Jadwal
-    const semuaJadwal = {
-      "Pekanbaru-Jambi": {
-          tanggal: ["2025-04-05", "2025-04-06", "2025-04-07", "2025-04-08"],
-          data: [
-              { tanggal: "2025-04-05", jam: "09:00 - 20:00", harga: "Rp. 330.000 / orang", fasilitas: "🏨 🍔 📦 🖥️" },
-              { tanggal: "2025-04-06", jam: "17:00 - 04:00", harga: "Rp. 350.000 / orang", fasilitas: "🚗 🍽️ 🎥 🎮" }
-          ]
-      },
-      "Duri-Pekanbaru": {
-          tanggal: ["2025-04-05", "2025-04-06"],
-          data: [
-              { tanggal: "2025-04-05", jam: "07:00 - 10:00", harga: "Rp. 150.000 / orang", fasilitas: "🚗 🍔 🎶" }
-          ]
-      },
-      "Tembilahan-Pekanbaru": {
-          tanggal: ["2025-04-06", "2025-04-07"],
-          data: [
-              { tanggal: "2025-04-07", jam: "06:00 - 11:00", harga: "Rp. 200.000 / orang", fasilitas: "🛌 🍛 📺" }
-          ]
-      }
-  };
+const tabContainer = document.querySelector('.tab-container');
+const scheduleList = document.getElementById('schedule-list');
 
-  const berangkat = sessionStorage.getItem('berangkat');
-  const tujuan = sessionStorage.getItem('tujuan');
+function formatTanggal(tgl) {
+    if (!tgl) return "Tanggal tidak valid";
+    const d = new Date(tgl);
+    if (isNaN(d.getTime())) return "Tanggal tidak valid";
 
-  const tabContainer = document.querySelector('.tab-container');
-  const scheduleList = document.getElementById('schedule-list');
+    const hari = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+    const bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    return `${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+}
 
-  function formatTanggal(tgl) {
-      const hari = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
-      const bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+function tampilkanJadwalUntukTanggal(data, tanggal) {
+    scheduleList.innerHTML = '';
+    const jadwalPadaTanggal = data.filter(item => item.tanggal === tanggal);
 
-      const d = new Date(tgl);
-      return `${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
-  }
+    if (jadwalPadaTanggal.length === 0) {
+        scheduleList.innerHTML = '<p>Tidak ada jadwal untuk tanggal ini.</p>';
+    } else {
+        jadwalPadaTanggal.forEach(item => {
+            scheduleList.innerHTML += `
+                <div class="schedule-card">
+                    <div class="schedule-header">${berangkat} → ${tujuan}</div>
+                    <div class="schedule-time">${item.jam}</div>
+                    <div class="schedule-price">${item.harga}</div>
+                    <div class="schedule-icons">${item.fasilitas}</div>
+                    <div class="schedule-actions">
+                        ${item.jam === "-" ? 
+                        `<a href="https://wa.me/6285175107091"><button class="btn" style="background: green;">📱 Hubungi CS</button></a>` :
+                        `<a href="pilih_duduk.html"><button class="btn">Pesan</button></a>
+                         <a href="https://wa.me/6285175107091"><button class="btn" style="background: green;">📱 WhatsApp</button></a>`}
+                    </div>
+                </div>`;
+        });
+    }
+}
+// Fungsi pesan melalui WA
+function pesanWA() {
+    const berangkat = document.getElementById("berangkat").value;
+    const tujuan = document.getElementById("tujuan").value;
+    const tanggal = document.getElementById("tanggal").value;
 
-  function tampilkanJadwalUntukTanggal(data, tanggal) {
-      scheduleList.innerHTML = '';
+    if (!berangkat || !tujuan || !tanggal) {
+        alert("Harap lengkapi data keberangkatan, tujuan, dan tanggal.");
+        return;
+    }
 
-      const jadwalPadaTanggal = data.filter(item => item.tanggal === tanggal);
+    const pesan = `Halo Rajendra Tours, saya ingin pesan tiket shuttle dengan detail berikut:\n- Dari: ${berangkat}\n- Ke: ${tujuan}\n- Tanggal: ${tanggal}`;
+    const encodedPesan = encodeURIComponent(pesan);
 
-      if (jadwalPadaTanggal.length === 0) {
-          scheduleList.innerHTML = '<p>Tidak ada jadwal untuk tanggal ini.</p>';
-      } else {
-          jadwalPadaTanggal.forEach(item => {
-              scheduleList.innerHTML += `
-              <div class="schedule-card">
-                  <div class="schedule-header">${berangkat} → ${tujuan}</div>
-                  <div class="schedule-time">${item.jam}</div>
-                  <div class="schedule-price">${item.harga}</div>
-                  <div class="schedule-icons">${item.fasilitas}</div>
-                  <div class="schedule-actions">
-                      <a href="pilih_duduk.html"><button class="btn">Pesan</button></a>
-                      <button class="btn" style="background: green;">📱 WhatsApp</button>
-                  </div>
-              </div>
-              `;
-          });
-      }
-  }
+    // Ganti nomor ini dengan nomor WhatsApp CS Rajendra Tours yang dipakai di bot
+    const nomorCS = "6285175107091";
 
-  if (berangkat && tujuan) {
-      const ruteKey = `${berangkat}-${tujuan}`;
-      const ruteData = semuaJadwal[ruteKey];
+    window.open(`https://wa.me/${nomorCS}?text=${encodedPesan}`, "_blank");
+}
 
-      if (ruteData) {
-          // Buat tabs tanggal
-          tabContainer.innerHTML = '';
-          ruteData.tanggal.forEach((tgl, index) => {
-              const tab = document.createElement('div');
-              tab.className = 'tab';
-              if (index === 0) tab.classList.add('active');
-              tab.innerText = formatTanggal(tgl);
-              tab.setAttribute('data-tanggal', tgl);
-              tabContainer.appendChild(tab);
-          });
 
-          // Tampilkan default (tanggal pertama)
-          tampilkanJadwalUntukTanggal(ruteData.data, ruteData.tanggal[0]);
+// Fungsi pilih tanggal
+if (!tanggalDipilih) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    tanggalDipilih = `${yyyy}-${mm}-${dd}`;
+    console.log("Tanggal default digunakan:", tanggalDipilih);
+}
 
-          // Event listener tab tanggal
-          const tabs = document.querySelectorAll('.tab');
-          tabs.forEach(tab => {
-              tab.addEventListener('click', function() {
-                  tabs.forEach(t => t.classList.remove('active'));
-                  this.classList.add('active');
+fetch("data/jadwal.json")
+  .then(res => res.json())
+  .then(semuaJadwal => {
+    if (berangkat && tujuan) {
+        const ruteKey = `${berangkat}-${tujuan}`;
+        const ruteData = semuaJadwal[ruteKey];
 
-                  const selectedTanggal = this.getAttribute('data-tanggal');
-                  tampilkanJadwalUntukTanggal(ruteData.data, selectedTanggal);
-              });
-          });
+        if (ruteData) {
+            if (tanggalDipilih && !ruteData.tanggal.includes(tanggalDipilih)) {
+                ruteData.tanggal.push(tanggalDipilih);
+            }
 
-      } else {
-          tabContainer.innerHTML = '<p>Rute tidak ditemukan.</p>';
-          scheduleList.innerHTML = '';
-      }
-  } else {
-      tabContainer.innerHTML = '<p>Data tidak lengkap.</p>';
-      scheduleList.innerHTML = '';
-  }
+            if (tanggalDipilih && !ruteData.data.some(item => item.tanggal === tanggalDipilih)) {
+                ruteData.data.push({
+                    tanggal: tanggalDipilih,
+                    jam: "-",
+                    harga: "Jadwal belum tersedia, Silakan hubungi Customer Service.",
+                    fasilitas: "❓ ❓ ❓"
+                });
+            }
+
+            tabContainer.innerHTML = '';
+            ruteData.tanggal.forEach((tgl, index) => {
+                const tab = document.createElement('div');
+                tab.className = 'tab';
+                if (tgl === tanggalDipilih || (!tanggalDipilih && index === 0)) {
+                    tab.classList.add('active');
+                    tampilkanJadwalUntukTanggal(ruteData.data, tgl);
+                }
+                tab.innerText = formatTanggal(tgl);
+                tab.setAttribute('data-tanggal', tgl);
+                tabContainer.appendChild(tab);
+            });
+
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    const selectedTanggal = this.getAttribute('data-tanggal');
+                    tampilkanJadwalUntukTanggal(ruteData.data, selectedTanggal);
+                });
+            });
+
+        } else {
+            tabContainer.innerHTML = '<p>Rute tidak ditemukan.</p>';
+            scheduleList.innerHTML = '';
+        }
+    } else {
+        tabContainer.innerHTML = '<p>Data tidak lengkap.</p>';
+        scheduleList.innerHTML = '';
+    }
+  })
+  .catch(err => {
+    console.error("Gagal memuat data jadwal.json", err);
+    tabContainer.innerHTML = '<p>Gagal memuat jadwal.</p>';
+  });
