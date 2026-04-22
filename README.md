@@ -1,104 +1,93 @@
-# 🤖 Auto-reply WhatsApp Bot untuk Rajendra Tours
+# 🚌 Rajendra Tours - Premium Shuttle Booking System
 
-Script ini menggunakan [Baileys](https://github.com/WhiskeySockets/Baileys) untuk membuat bot WhatsApp auto-reply yang merespon kata kunci seperti `pesan` atau `jadwal`. Cocok untuk digunakan sebagai asisten pemesanan shuttle Rajendra Tours via WhatsApp.
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Modern UI](https://img.shields.io/badge/UI-Premium%20Glassmorphism-orange.svg)](#)
+
+**Rajendra Tours** adalah sistem pemesanan tiket shuttle modern yang menggabungkan antarmuka web premium dengan bot otomatisasi WhatsApp. Dirancang untuk memberikan pengalaman pemesanan yang cepat, elegan, dan terintegrasi bagi pelanggan travel.
 
 ---
 
-## 📁 Struktur Project
+## ✨ Fitur Utama
 
-```
-RajendraTours-Demo/
+### 🌐 Frontend (Web Application)
+- **Premium UI/UX**: Desain modern menggunakan konsep *Glassmorphism* yang bersih dan elegan.
+- **Mobile First**: Antarmuka yang dioptimalkan sepenuhnya untuk pengguna perangkat seluler.
+- **Fixed Navigation**: Menu navigasi bawah yang intuitif dengan indikator halaman aktif.
+- **Interactive Booking**: Alur pemilihan rute, tanggal, hingga posisi kursi yang visual dan informatif.
+- **Smooth Animations**: Transisi halus dan carousel promo yang dinamis.
+
+### 🤖 Backend (WhatsApp Automation)
+- **Auto-Reply Bot**: Otomatisasi respon pesan untuk pengecekan jadwal dan instruksi pemesanan.
+- **Dynamic Data Support**: Bot terintegrasi langsung dengan data jadwal JSON terbaru.
+- **Auto-Reconnect**: Sistem pemulihan koneksi otomatis untuk menjaga bot tetap online.
+- **Session Management**: Pengelolaan sesi WhatsApp yang aman dan efisien.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- **Frontend**: HTML5, Vanilla CSS3 (Custom Design System), JavaScript (ES6+).
+- **Backend Bot**: Node.js, [Baileys](https://github.com/WhiskeySockets/Baileys) (WhatsApp Socket Library).
+- **Icons & Fonts**: Font Awesome, Google Fonts (Poppins).
+
+---
+
+## 📂 Struktur Proyek
+
+```text
+RajendraTours/
 ├── assets/
-│   └── js/
-│       └── script.js            # Fungsi tombol "Pesan via WhatsApp"
-├── session/                      # Folder session (otomatis dibuat setelah login)
-├── script-bot.js                 # Bot auto-reply WhatsApp (pakai Baileys)
-├── start.js                      # Alternatif launcher bot (opsional)
-├── index.html                    # Tampilan landing page
-├── README.md                     # Dokumentasi ini
-└── ...
+│   ├── css/
+│   │   ├── global.css          # Design system & shared styles
+│   │   ├── style.css           # Home page specific styles
+│   │   └── ...                 # Other page styles
+│   ├── js/
+│   │   └── script.js           # Core frontend logic & navigation
+│   └── img/                    # Image assets & logo
+├── data/
+│   └── jadwal.json             # Centralized schedule database
+├── index.html                  # Landing page / Booking start
+├── jadwal.html                 # Schedule view page
+├── pilih_duduk.html            # Seat selection UI
+├── form_pemesanan.html         # Final booking details form
+├── script-bot.js               # WhatsApp bot core logic
+└── package.json                # Project dependencies & scripts
 ```
 
 ---
 
-## ⚙️ Cara Menjalankan Bot WhatsApp
+## 🚀 Cara Menjalankan
 
-### 1. Instalasi Dependency
+### 1. Prasyarat
+Pastikan Anda sudah menginstal [Node.js](https://nodejs.org/) di komputer Anda.
+
+### 2. Instalasi
+Clone repository ini dan instal dependensi yang diperlukan:
 ```bash
-npm install @whiskeysockets/baileys qrcode-terminal
+git clone https://github.com/HilmanSyahid007/RajendraTours.git
+cd RajendraTours
+npm install
 ```
 
-### 2. Jalankan Bot Pertama Kali
+### 3. Menjalankan Bot WhatsApp
+Gunakan perintah berikut untuk memulai bot:
 ```bash
-node script-bot.js
+npm start
 ```
-> QR Code akan muncul di terminal. Scan dengan aplikasi WhatsApp kamu.
-
-### 3. Catatan Penting
-- Gunakan **nomor baru atau CS Rajendra Tours** untuk menghindari `code: 515` dari WhatsApp.
-- Hindari balas ke grup, broadcast, atau spam agar akun tidak terkena limit.
-- Semua pesan yang masuk ke nomor CS (via tombol "Pesan WA") akan ditanggapi oleh bot.
-- Untuk sementara WA Bot dari @whiskeysockets/baileys diperlukan adanya komputer yang nyala 24jam nonstop
-- Jika kamu perlu auto-reply resmi, bisa pertimbangkan untuk menggunakan WA Bot: 
-    1. WhatsApp Business API (berbayar)
-    2. Gateway seperti Wablas, [Zenziva WA API], atau [Ultramsg]
+> Scan QR Code yang muncul di terminal menggunakan aplikasi WhatsApp Anda untuk menghubungkan bot.
 
 ---
 
-## 🌐 Integrasi ke Website
-
-### Di `index.html` tambahkan:
-```html
-<button onclick="pesanWA()">📱 Pesan Lewat WhatsApp</button>
-```
-
-### Di `assets/js/script.js` tambahkan fungsi:
-```javascript
-function pesanWA() {
-    const berangkat = document.getElementById("berangkat").value;
-    const tujuan = document.getElementById("tujuan").value;
-    const tanggal = document.getElementById("tanggal").value;
-
-    let text = `Halo, saya ingin pesan shuttle:\n- Berangkat dari: ${berangkat}\n- Tujuan ke: ${tujuan}\n- Tanggal: ${tanggal}`;
-    let url = `https://wa.me/628xxxxxx?text=${encodeURIComponent(text)}`;
-
-    window.open(url, '_blank');
-}
-```
-> Ganti `628xxxxxx` dengan nomor WA CS Rajendra Tours
+## 🔐 Tips Keamanan & Penggunaan
+- **Nomor CS**: Gunakan nomor khusus Customer Service untuk menjalankan bot agar terhindar dari pemblokiran.
+- **Anti-Spam**: Bot dikonfigurasi untuk hanya membalas chat pribadi, hindari penggunaan di grup besar.
+- **Deployment**: Untuk penggunaan 24/7, sangat disarankan menjalankan bot di VPS menggunakan Process Manager seperti `pm2`.
 
 ---
 
-## 🔐 Tips Keamanan & Anti-Banned
-- Hindari broadcast
-- Jangan balas pesan dari grup
-- Hanya tanggapi pesan pribadi dari user ke CS
-- Gunakan 1 koneksi dalam 1 waktu
-- Idealnya simpan session di VPS untuk bot 24/7
+## 📞 Kontak & Bantuan
+Jika Anda memiliki pertanyaan atau ingin bekerja sama, silakan hubungi tim **Rajendra Tours**.
 
 ---
-
-## 🚀 Siap Deploy ke GitHub
-
-### 1. Inisialisasi Git (jika belum)
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-### 2. Tambahkan Remote dan Push
-```bash
-git remote add origin https://github.com/username/repo-name.git
-git branch -M main
-git push -u origin main
-```
-
----
-
-## 📞 Kontak Bantuan
-Jika mengalami kendala hubungi kami 
-
----
-
-Sukses untuk Rajendra Tours! 🚐✨
+*Dibuat dengan ❤️ untuk kemajuan transportasi digital Indonesia.*
