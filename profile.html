@@ -1,93 +1,86 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profil Pengguna</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    .content-container {
-      padding: 20px;
-    }
-    .top-button {
-      background-color: #31b6fd;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      width: 100%;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
-    .section {
-      background-color: white;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-    }
-    .section a {
-      display: block;
-      color: #333;
-      text-decoration: none;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-    }
-    .section a:last-child {
-      border-bottom: none;
-    }
-    .customer-service {
-      display: flex;
-      align-items: center;
-      padding: 10px 0;
-    }
-    .customer-service img {
-      width: 40px;
-      margin-right: 10px;
-    }
-    .customer-service div {
-      line-height: 1.2;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil | Rajendra Tours</title>
+    <!-- Link Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
 </head>
 <body>
-
-  <div class="container">
     <div class="navbar">
-      <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+        <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
     </div>
-  </div>
 
-  <div class="content-container">
-    <button class="top-button" onclick="location.href='login.html'">👤 Masuk Akun</button>
+    <div class="container">
+        <div class="content-card">
+            <div id="profileSection">
+                <!-- Will be updated by JS -->
+                <div class="text-center">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">👤</div>
+                    <h2 id="userName">Tamu</h2>
+                    <p id="userPhone" style="color: var(--text-light);">-</p>
+                </div>
+                <button class="btn btn-primary mt-20" onclick="handleAuthAction()" id="authBtn">Masuk Akun</button>
+            </div>
 
-    <div class="section">
-      <div class="customer-service">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA Icon"/>
-        <div>
-          <strong>Layanan Pelanggan</strong><br/>
-          perlu bantuan? hubungi kami
+            <div class="mt-20 pt-20" style="border-top: 1px solid #eee;">
+                <h3>Bantuan & Layanan</h3>
+                <div class="help-item mt-10" onclick="window.open('https://wa.me/6285175107091', '_blank')" style="cursor: pointer; display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 12px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" style="width: 30px;">
+                    <div>
+                        <p style="font-weight: 600; margin: 0;">Layanan Pelanggan</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light); margin: 0;">Butuh bantuan? Hubungi kami via WA</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="bottom-navbar">
-      <a href="index.html">
-        <span>🏠</span>
-        <p>Beranda</p>
-      </a>
-      <a href="jadwal.html">
-        <span>🕒</span>
-        <p>Jadwal</p>
-      </a>
-      <a href="profile.html">
-        <span>👤</span>
-        <p>Profil</p>
-      </a>
-  </div>
-  </div>
 
-  <script src="assets/js/script.js"></script>
+    <div class="bottom-navbar">
+        <a href="index.html" id="nav-home">
+          <span>🏠</span>
+          <p>Beranda</p>
+        </a>
+        <a href="jadwal.html" id="nav-schedule">
+          <span>🕒</span>
+          <p>Jadwal</p>
+        </a>
+        <a href="profile.html" id="nav-profile">
+          <span>👤</span>
+          <p>Profil</p>
+        </a>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const user = localStorage.getItem("loggedInUser");
+            const authBtn = document.getElementById("authBtn");
+            const userName = document.getElementById("userName");
+            const userPhone = document.getElementById("userPhone");
+
+            if (user) {
+                userName.innerText = "Pelanggan Setia";
+                userPhone.innerText = user;
+                authBtn.innerText = "Keluar Akun";
+                authBtn.classList.replace("btn-primary", "btn-whatsapp"); // Reuse green color for logout or create a red one
+            }
+        });
+
+        function handleAuthAction() {
+            const user = localStorage.getItem("loggedInUser");
+            if (user) {
+                localStorage.removeItem("loggedInUser");
+                location.reload();
+            } else {
+                location.href = 'login.html';
+            }
+        }
+    </script>
 </body>
 </html>
+

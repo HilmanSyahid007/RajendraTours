@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rajendra Tours - Layanan Pemesanan Shuttle dan Travel Terpercaya.">
+    <title>Rajendra Tours | Pemesanan Shuttle</title>
+    <!-- Link Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Link CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Rajendra Tours</title>
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
-            <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
-        </div>
+    <div class="navbar">
+        <img src="assets/img/Desain tanpa judul (1).png" alt="Rajendra Tours Logo">
+    </div>
 
-        <div class="content-container">
+    <div class="container">
+        <div class="content-card">
             <h1>Pemesanan Shuttle</h1>
 
-            <div class="carousel">
-                <img src="assets/img/WhatsApp Image 2025-05-01 at 7.26.38 PM.jpeg" class="active" alt="Promo 1">
-                <img src="assets/img/Rajendra2017-2.jpg" alt="Promo 2">
-                <img src="assets/img/hiace.jpg" alt="Promo 3">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="assets/img/WhatsApp Image 2025-05-01 at 7.26.38 PM.jpeg" class="active" alt="Promo Rajendra Tours 1">
+                    <img src="assets/img/Rajendra2017-2.jpg" alt="Promo Rajendra Tours 2">
+                    <img src="assets/img/hiace.jpg" alt="Armada Hiace">
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
             </div>
 
             <div class="form-group">
@@ -51,29 +62,37 @@
                 <input type="date" id="tanggal">
             </div>
 
-            <button onclick="cariJadwal()" style="font-family: 'Poppins', sans-serif;"> 📅 Cari Jadwal</button>
-            <p style="text-align: center;">Atau</p>
-            <button onclick="pesanWA()" style="background-color: green; color: white; margin-top: 10px; width: 100%; font-family: 'Poppins', sans-serif;">
-            📱 Pesan Lewat WhatsApp
+            <button onclick="cariJadwal()" class="btn btn-primary">
+                <span>📅</span> Cari Jadwal
             </button>
-
-            <div class="bottom-navbar">
-                <a href="index.html">
-                    <span>🏠</span>
-                    <p>Beranda</p>
-                </a>
-                <a href="jadwal.html">
-                    <span>🕒</span>
-                    <p>Jadwal</p>
-                </a>
-                <a href="profile.html">
-                    <span>👤</span>
-                    <p>Profil</p>
-                </a>
+            
+            <div class="text-center mt-10 mb-20">
+                <p style="color: var(--text-light); font-size: 0.9rem;">Atau</p>
             </div>
+
+            <button onclick="pesanWA()" class="btn btn-whatsapp">
+                <span>📱</span> Pesan Lewat WhatsApp
+            </button>
         </div>
     </div>
+
+    <div class="bottom-navbar">
+        <a href="index.html" id="nav-home">
+            <span>🏠</span>
+            <p>Beranda</p>
+        </a>
+        <a href="jadwal.html" id="nav-schedule">
+            <span>🕒</span>
+            <p>Jadwal</p>
+        </a>
+        <a href="profile.html" id="nav-profile">
+            <span>👤</span>
+            <p>Profil</p>
+        </a>
+    </div>
+
     <!-- Script Javascript -->
-     <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
+

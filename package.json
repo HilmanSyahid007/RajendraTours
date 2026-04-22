@@ -1,6 +1,14 @@
 {
+  "name": "rajendra-tours-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot for Rajendra Tours",
+  "main": "script-bot.js",
+  "scripts": {
+    "start": "node script-bot.js"
+  },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.18",
     "qrcode-terminal": "^0.12.0"
   }
 }
+

@@ -1,93 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Kursi | Rajendra Tours</title>
+    <!-- Link Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Link CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/pilihduduk.css">
-    <title>Rajendra Tours</title>
 </head>
 <body>
-    <div class="container">
-        <!-- Navbar Section -->
-        <div class="navbar">
-            <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
-        </div>
+    <div class="navbar">
+        <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+    </div>
 
-        <!-- Content Section -->
-        <div class="seat-container">
+    <div class="container">
+        <div class="content-card">
             <h2>Pilih Posisi Duduk</h2>
-            <div class="seat-grid">
-                <div class="seat" data-seat="1">1</div>
-                <div class="seat unavailable" data-seat="X2">X</div>
-                <div class="seat driver">👤</div> <!-- dipindah ke sini -->
-                <div class="seat" data-seat="2">2</div>
-                <div class="seat unavailable" data-seat="X2">X</div>
-                <div class="seat" data-seat="3">3</div>
-                <div class="seat" data-seat="4">4</div>
-                <div class="seat unavailable" data-seat="X2">X</div>
-                <div class="seat" data-seat="5">5</div>
+            <div class="seat-grid-container">
+                <div class="seat-grid">
+                    <div class="seat" data-seat="1">1</div>
+                    <div class="seat unavailable" data-seat="X">X</div>
+                    <div class="seat driver">👤</div>
+                    <div class="seat" data-seat="2">2</div>
+                    <div class="seat unavailable" data-seat="X">X</div>
+                    <div class="seat" data-seat="3">3</div>
+                    <div class="seat" data-seat="4">4</div>
+                    <div class="seat unavailable" data-seat="X">X</div>
+                    <div class="seat" data-seat="5">5</div>
+                </div>
             </div>
-            <div class="summary">
-                <p>Kursi Dipilih: <span id="selectedSeats">-</span></p>
-                <p>Total Harga: Rp.<span id="totalPrice">0</span></p>
-                <button id="confirmButton" class="confirm-button">Konfirmasi</button>
-            </div>
-            <div class="bottom-navbar">
-                <a href="index.html">
-                  <span>🏠</span>
-                  <p>Beranda</p>
-                </a>
-                <a href="jadwal.html">
-                  <span>🕒</span>
-                  <p>Jadwal</p>
-                </a>
-                <a href="profile.html">
-                  <span>👤</span>
-                  <p>Profil</p>
-                </a>
+            
+            <div class="summary mt-10">
+                <div class="summary-item">
+                    <span>Kursi Dipilih:</span>
+                    <span id="selectedSeats" class="badge">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Total Harga:</span>
+                    <span class="price-text">Rp.<span id="totalPrice">0</span></span>
+                </div>
+                <button id="confirmButton" class="btn btn-primary mt-10">Konfirmasi Pesanan</button>
             </div>
         </div>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const seatButtons = document.querySelectorAll(".seat");
-        const selectedSeatsSpan = document.getElementById("selectedSeats");
-        const totalPriceSpan = document.getElementById("totalPrice");
-        const confirmButton = document.getElementById("confirmButton");
-        const pricePerSeat = 100000;
-        let selectedSeats = [];
+    <div class="bottom-navbar">
+        <a href="index.html" id="nav-home">
+          <span>🏠</span>
+          <p>Beranda</p>
+        </a>
+        <a href="jadwal.html" id="nav-schedule">
+          <span>🕒</span>
+          <p>Jadwal</p>
+        </a>
+        <a href="profile.html" id="nav-profile">
+          <span>👤</span>
+          <p>Profil</p>
+        </a>
+    </div>
 
-        seatButtons.forEach(seat => {
-          if (!seat.classList.contains("driver") && !seat.classList.contains("unavailable")) {
-            seat.addEventListener("click", function () {
-              const seatNumber = this.dataset.seat;
-              this.classList.toggle("selected");
-
-              if (selectedSeats.includes(seatNumber)) {
-                selectedSeats = selectedSeats.filter(s => s !== seatNumber);
-              } else {
-                selectedSeats.push(seatNumber);
-              }
-
-              selectedSeatsSpan.textContent = selectedSeats.length ? selectedSeats.join(", ") : "-";
-              totalPriceSpan.textContent = selectedSeats.length * pricePerSeat;
-            });
-          }
-        });
-
-        confirmButton.addEventListener("click", function () {
-          if (selectedSeats.length === 0) {
-            alert("Silakan pilih kursi terlebih dahulu!");
-            return;
-          }
-
-          sessionStorage.setItem("kursi", selectedSeats.join(", "));
-          sessionStorage.setItem("total", selectedSeats.length * pricePerSeat);
-          window.location.href = "form_pemesanan.html";
-        });
-      });
-    </script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
+

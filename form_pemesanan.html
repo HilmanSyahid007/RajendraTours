@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/form_pemesanan.css">
-  <title>Form Pemesanan - Rajendra Tours</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan | Rajendra Tours</title>
+    <!-- Link Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/form_pemesanan.css">
 </head>
 <body>
-  <div class="container">
     <div class="navbar">
-      <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+        <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
     </div>
 
-    <div class="content-container">
-      <h1>Form Pemesanan</h1>
-      <form id="pemesananForm">
-        <div class="form-group">
-          <label>Nama Lengkap</label>
-          <input type="text" id="nama" required>
+    <div class="container">
+        <div class="content-card">
+            <h1>Detail Pemesanan</h1>
+            <form id="pemesananForm">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama sesuai KTP" required>
+                </div>
+                <div class="form-group">
+                    <label>No. WhatsApp</label>
+                    <input type="tel" id="telepon" placeholder="Contoh: 08123456789" required>
+                </div>
+                <div class="form-group">
+                    <label>Metode Pembayaran</label>
+                    <select id="pembayaran" required>
+                        <option value="">Pilih Metode</option>
+                        <option value="Cash">Cash (Bayar di Tempat)</option>
+                        <option value="Transfer">Transfer Bank</option>
+                        <option value="QRIS">QRIS</option>
+                    </select>
+                </div>
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Kursi</label>
+                        <input type="text" id="kursiDipilih" readonly style="background: #e9ecef;">
+                    </div>
+                    <div class="form-group">
+                        <label>Total Bayar</label>
+                        <input type="text" id="totalHarga" readonly style="background: #e9ecef; font-weight: 700; color: var(--accent-color);">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Konfirmasi & Pesan via WA</button>
+            </form>
         </div>
-        <div class="form-group">
-          <label>No. Telepon</label>
-          <input type="text" id="telepon" required>
-        </div>
-        <div class="form-group">
-          <label>Jumlah Penumpang</label>
-          <input type="number" id="penumpang" min="1" required>
-        </div>
-        <div class="form-group">
-          <label>Metode Pembayaran</label>
-          <select id="pembayaran" required>
-            <option value="">Pilih Metode</option>
-            <option value="Cash">Cash</option>
-            <option value="Transfer">Transfer</option>
-            <option value="QRIS">QRIS</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Kursi Dipilih</label>
-          <input type="text" id="kursiDipilih" readonly>
-        </div>
-        <div class="form-group">
-          <label>Total Harga</label>
-          <input type="text" id="totalHarga" readonly>
-        </div>
-        <button type="submit">Kirim Pemesanan</button>
-      </form>
+    </div>
 
-      <div class="bottom-navbar">
-        <a href="index.html">
+    <div class="bottom-navbar">
+        <a href="index.html" id="nav-home">
           <span>🏠</span>
           <p>Beranda</p>
         </a>
-        <a href="jadwal.html">
+        <a href="jadwal.html" id="nav-schedule">
           <span>🕒</span>
           <p>Jadwal</p>
         </a>
-        <a href="profile.html">
+        <a href="profile.html" id="nav-profile">
           <span>👤</span>
           <p>Profil</p>
         </a>
-      </div>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const kursi = sessionStorage.getItem("kursi") || "-";
-      const total = sessionStorage.getItem("total") || "0";
-      document.getElementById("kursiDipilih").value = kursi;
-      document.getElementById("totalHarga").value = "Rp. " + total;
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const kursi = sessionStorage.getItem("kursi") || "-";
+            const total = sessionStorage.getItem("total") || "0";
+            document.getElementById("kursiDipilih").value = kursi;
+            document.getElementById("totalHarga").value = "Rp. " + parseInt(total).toLocaleString('id-ID');
 
-      document.getElementById("pemesananForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+            document.getElementById("pemesananForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                
+                const nama = document.getElementById("nama").value;
+                const telepon = document.getElementById("telepon").value;
+                const pembayaran = document.getElementById("pembayaran").value;
+                const berangkat = sessionStorage.getItem('berangkat');
+                const tujuan = sessionStorage.getItem('tujuan');
+                const tanggal = sessionStorage.getItem('tanggal');
 
-        alert("Pemesanan berhasil dikirim! (Simulasi)");
-        sessionStorage.clear();
-        window.location.href = "index.html";
-      });
-    });
-
-    (function(){
-      emailjs.init("3mcikNQhO3c-xBkTI"); // Ganti dengan userID dari EmailJS
-      emailjs.sendForm('service_ie617wa', 'template_y3n988n', this)
-    })();
-  </script>
+                const pesan = `Halo Rajendra Tours, saya ingin konfirmasi pesanan:\n👤 Nama: ${nama}\n📱 WA: ${telepon}\n📍 Rute: ${berangkat} -> ${tujuan}\n📅 Tanggal: ${tanggal}\n💺 Kursi: ${kursi}\n💰 Total: Rp. ${parseInt(total).toLocaleString('id-ID')}\n💳 Pembayaran: ${pembayaran}`;
+                
+                window.open(`https://wa.me/6285175107091?text=${encodeURIComponent(pesan)}`, "_blank");
+                
+                alert("Pemesanan dikirim ke WhatsApp!");
+                sessionStorage.clear();
+                window.location.href = "index.html";
+            });
+        });
+    </script>
 </body>
 </html>
+

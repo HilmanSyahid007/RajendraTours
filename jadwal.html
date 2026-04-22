@@ -3,47 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Shuttle | Rajendra Tours</title>
+    <!-- Link Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Link CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/jadwal.css">
-    <title>Rajendra Tours</title>
 </head>
 <body>
+    <div class="navbar">
+        <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+    </div>
+
     <div class="container">
-        <div class="navbar">
-            <img src="assets/img/Desain tanpa judul (1).png" alt="Logo">
+        <div class="content-card">
+            <h1>Jadwal Shuttle</h1>
+
+            <div class="tab-container">
+                <!-- Tab dates will be injected here via JavaScript -->
+            </div>
+
+            <div id="schedule-list">
+                <!-- Jadwal akan dimunculkan disini via JavaScript -->
+            </div>
         </div>
     </div>
 
-    <div class="content-container">
-        <h1>Jadwal Shuttle</h1>
-
-        <div class="tab-container">
-            <div class="tab active">Sab, 5 Apr 2025</div>
-            <div class="tab">Min, 6 Apr 2025</div>
-            <div class="tab">Sen, 7 Apr 2025</div>
-            <div class="tab">Sel, 8 Apr 2025</div>
-        </div>
-
-        <div id="schedule-list">
-            <!-- Jadwal akan dimunculkan disini via JavaScript -->
-        </div>
-
-        <div class="bottom-navbar">
-            <a href="index.html">
-              <span>🏠</span>
-              <p>Beranda</p>
-            </a>
-            <a href="jadwal.html">
-              <span>🕒</span>
-              <p>Jadwal</p>
-            </a>
-            <a href="profile.html">
-              <span>👤</span>
-              <p>Profil</p>
-            </a>
-        </div>
+    <div class="bottom-navbar">
+        <a href="index.html" id="nav-home">
+          <span>🏠</span>
+          <p>Beranda</p>
+        </a>
+        <a href="jadwal.html" id="nav-schedule">
+          <span>🕒</span>
+          <p>Jadwal</p>
+        </a>
+        <a href="profile.html" id="nav-profile">
+          <span>👤</span>
+          <p>Profil</p>
+        </a>
     </div>
+
     <!-- Script Javascript -->
-     <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
+
